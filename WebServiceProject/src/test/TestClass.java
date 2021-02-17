@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import org.tempuri.WebService1SoapProxy;
 
+import GUIApplication.DataAccessLayer;
+
 public class TestClass {
 	public static void main(String args[]) {
 		WebService1SoapProxy proxy = new WebService1SoapProxy();
@@ -17,6 +19,16 @@ public class TestClass {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error.");
+			e.printStackTrace();
+		}
+		DataAccessLayer data = new DataAccessLayer();
+		System.out.println("Please enter a filename:");
+		fileName = inputScanner.nextLine();
+		try {
+			String output = data.readFile(fileName);
+			System.out.println(output);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
