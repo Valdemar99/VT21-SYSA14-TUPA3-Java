@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class FancyJavaClientWithGUI extends JFrame {
 
@@ -16,10 +17,11 @@ public class FancyJavaClientWithGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldFileName;
-	private JTextArea textAreaForFileReading;
 	private JButton btnReadFile;
 	private JLabel lblFeedback;
 	private Controller controller;
+	private JScrollPane scrollPane;
+	private JTextArea textAreaForFileReading;
 
 
 	public Controller getController() {
@@ -88,15 +90,19 @@ public class FancyJavaClientWithGUI extends JFrame {
 		lblFeedback.setBounds(10, 77, 382, 14);
 		contentPane.add(lblFeedback);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 176, 589, 446);
+		contentPane.add(scrollPane);
+		
 		textAreaForFileReading = new JTextArea();
-		textAreaForFileReading.setBounds(10, 104, 587, 518);
-		contentPane.add(textAreaForFileReading);
 		textAreaForFileReading.setEditable(false);
+		scrollPane.setViewportView(textAreaForFileReading);
 		
 		btnReadFile = new JButton("Read file");
 		btnReadFile.addActionListener(controller.readFile(textFieldFileName, lblFileName, textAreaForFileReading));
 		
 		btnReadFile.setBounds(303, 34, 89, 23);
 		contentPane.add(btnReadFile);
+
 	}
 }
